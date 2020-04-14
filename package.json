@@ -1,0 +1,26 @@
+{
+  "name": "complete-into-to-react",
+  "description": "### What is React?",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ZenGeek",
+  "license": "ISC",
+  "keywords": [
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeekEast/complete-intro-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GeekEast/complete-intro-react/issues"
+  },
+  "homepage": "https://github.com/GeekEast/complete-intro-react#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "2.0.4"
+  }
+}
