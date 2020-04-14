@@ -3,7 +3,7 @@
 - `React`: all about **making** and **resuing** `Components` to build large apps
 - `createElement`: create an `instance` of a React Component
 
-### API
+#### API
 
 - react(~**12KB**): the api to create React Components.
 ```javascript
@@ -23,3 +23,20 @@
     		document.getElementById("root")        // entry point in html
     )
 ```
+
+### Code Style
+#### Prettier
+- Install
+```sh
+yarn add --dev --exact prettier 
+```
+- Usage
+```sh
+prettier --write .
+```
+#### Eslint
+- Install
+```sh
+yarn add --dev eslint 
+```
+- 
