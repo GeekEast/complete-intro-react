@@ -9,12 +9,21 @@
 </head>
 
 <body>
-    <div class="root">Not Rendered!</div>
-    <!-- must put react after root div -->
+    <div id="root">Not Rendered!</div>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <!-- must put after importing react and react-dom -->
+    <!-- must put after importing react and react-dom in order to find the libs -->
     <script>
+        const App = () => React.createElement(
+            "div",
+            {},
+            React.createElement(
+                "h1",
+                {},
+                "Adopt Me!"
+            )
+        )
+        ReactDOM.render(React.createElement(App), document.getElementById("root"))
     </script>
 </body>
 </html>
