@@ -111,3 +111,8 @@ yarn add --dev parcel-bundler
     "lint": "eslint \"src/**/*.{js,jsx,html,css}\" --fix --quiet"
   },
 ```
+- Run Production locally
+```
+yarn global add serve
+serve -s dist
+```

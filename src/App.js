@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const Pet = (props) =>
-  React.createElement('div', {}, [
-    React.createElement('h1', {}, props.name), // name
-    React.createElement('h2', {}, props.type), // type
-    React.createElement('h3', {}, props.breed), // breed
-  ]);
+import { Pet } from './Pet';
 
 const App = () =>
   React.createElement('div', {}, [
