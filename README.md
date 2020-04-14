@@ -105,6 +105,7 @@ yarn add --dev parcel-bundler
 ```json
   "scripts": {
 +   "dev": "parcel src/index.html",
++   "build": "parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx,html,css}\" --fix --quiet"
