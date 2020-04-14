@@ -33,23 +33,80 @@ ReactDOM.render(
 #### Prettier
 
 - Install
-
 ```sh
 yarn add --dev --exact prettier
+``
+
+- Config
+```json
+# package.json
+  "scripts": {
++   "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
 ```
-
-- Usage
-
+```json
+// .prettierrc
+{
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true
+}
+```
 ```sh
-prettier --write .
+# .prettierignore
+dist/
+**/*.md
+.cache/
+coverage/
 ```
 
 #### Eslint
 
 - Install
-
 ```sh
-yarn add --dev eslint
+yarn add --dev eslint eslint-config-prettier
+```
+- Config
+```json
+# package.json
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
++   "lint": "eslint \"src/**/*.{js,jsx,html,css}\" --fix --quiet"
+  },
+```
+```json
+// eslintrc.json
+{
+  "extends": ["eslint:recommended", "prettier", "prettier/react"],
+  "plugins": [],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
+}
 ```
 
--
+### Bundler
+- Install
+```sh
+yarn add --dev parcel-bundler 
+```
+- Config
+```json
+  "scripts": {
++   "dev": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx,html,css}\" --fix --quiet"
+  },
+```
