@@ -35,8 +35,7 @@ ReactDOM.render(
 - Install
 ```sh
 yarn add --dev --exact prettier
-``
-
+```
 - Config
 ```json
 # package.json
@@ -45,6 +44,8 @@ yarn add --dev --exact prettier
     "test": "echo \"Error: no test specified\" && exit 1",
   },
 ```
+
+
 ```json
 // .prettierrc
 {
