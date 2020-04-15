@@ -1,8 +1,11 @@
 import React from 'react';
 
-export const Pet = (props) =>
-  React.createElement('div', {}, [
-    React.createElement('h1', {}, props.name),
-    React.createElement('h2', {}, props.type),
-    React.createElement('h3', {}, props.breed),
-  ]);
+export default ({ name, type, breed }) => {
+  return (
+    <div>
+      <h1>{name}</h1>
+      <h2>{type}</h2>
+      <h2>{breed}</h2>
+    </div>
+  );
+};

@@ -13,7 +13,7 @@
 const App = () => {
   return React.createElement(
     'div', // html type or custom type -> web components
-    {}, // props for its children: {} [] or null is all fine
+    {}, // props for it and its children: {} [] or null is all fine
     'Adopt Me!' // children or content
   );
 };
@@ -116,4 +116,62 @@ yarn add --dev parcel-bundler
 ```
 yarn global add serve
 serve -s dist
+```
+
+### JSX
+- Make code more **readable**
+- translate `HTML` tags into `React.createElement` calls
+#### Example
+- You still need to import `React` to use `React.createElement()` **behind the hood**.
+- **Before**
+```javascript
+React.createElement("h1", {id:"main-title"}, props.name)
+```
+- **After**
+```html
+<h1 id="main-title">{props.name}</h1>
+```
+#### Add JSX support for Eslint
+- Install
+```sh
+yarn add --dev babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+```
+- Config
+```json
+{
+  "extends": [
+    "eslint:recommended",
++   "plugin:import/errors",
++   "plugin: react/recommended",
++   "plugin: jsx-a11y/recommended",
+    "prettier", 
+    "prettier/react"],
+  "rules": {
++   "react/prop-types": 0,
++   "react/display-name": 0
+  }
+  "plugins": [
++   "react",
++   "import",
++   "jsx-a11y"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
++  "settings": {
++    "react": {
++      "version": "detect"
++    }
++  }
+}
+
 ```
