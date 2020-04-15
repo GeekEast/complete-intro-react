@@ -13,7 +13,7 @@
 const App = () => {
   return React.createElement(
     'div', // html type or custom type -> web components
-    {}, // props for its children: {} [] or null is all fine
+    {}, // props for it and its children: {} [] or null is all fine
     'Adopt Me!' // children or content
   );
 };
@@ -117,3 +117,16 @@ yarn add --dev parcel-bundler
 yarn global add serve
 serve -s dist
 ```
+
+### JSX
+- Make code more **readable**
+- translate `HTML` tags into `React.createElement` calls
+- **Before**
+```javascript
+React.createElement("h1", {id:"main-title"}, props.name)
+```
+- **After**
+```html
+<h1 id="main-title">{props.name}</h1>
+```
+- You still need to import `React` to use `React.createElement()` **behind the hood**.
