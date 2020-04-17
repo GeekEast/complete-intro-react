@@ -203,3 +203,15 @@ const App = () => {
     ],
 }
 ```
+
+#### Code Reuse with Hooks
+- Further **Decoupled** Code between `parent` and `children` components
+```javascript
+const useDropdown = (label, defaultState, options) => {
+  const [state, setState] = useState(defaultState); // state manager
+  const Dropdown = () => (
+    //...
+  ); // component
+  return [state, Dropdown, setState] // expose component with state manager
+};
+```
