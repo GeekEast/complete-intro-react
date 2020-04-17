@@ -3,10 +3,9 @@ import { ANIMALS } from '@frontendmasters/pet';
 
 export default () => {
   const [location, setLocation] = useState('Seattle, WA');
-  const [type, setType] = useState("");
-  const [breed, setBreed] = useState("");
+  const [type, setType] = useState('');
+  const [breed, setBreed] = useState('');
   const [breeds, setBreeds] = useState([]);
-
 
   return (
     <div className="search-params">
@@ -27,12 +26,14 @@ export default () => {
             id="type"
             value={type}
             onChange={(e) => setType(e.target.value)}
-            onBlur={e => setType(e.target.value)}
+            onBlur={(e) => setType(e.target.value)}
           >
-              <option value="all">All</option>
-              {ANIMALS.map(t => (
-                  <option key={t} value={t}>{t}</option>
-              ))}
+            <option value="all">All</option>
+            {ANIMALS.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -42,15 +43,21 @@ export default () => {
             id="breed"
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
-            onBlur={e => setBreed(e.target.value)}
+            onBlur={(e) => setBreed(e.target.value)}
             disabled={!breeds.length}
           >
-              <option value="all">All</option>
-              {breeds.map(b => (
-                  <option key={b} value={b}>{b}</option>
-              ))}
+            <option value="all">All</option>
+            {breeds.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
           </select>
         </label>
+        <div>{location}</div>
+        <div>{type}</div>
+        <div>{breed}</div>
+        <br />
         <button>Submit</button>
       </form>
     </div>
