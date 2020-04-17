@@ -215,3 +215,6 @@ const useDropdown = (label, defaultState, options) => {
   return [state, Dropdown, setState] // expose component with state manager
 };
 ```
+
+### Effects
+- Typically used to fetech data from API

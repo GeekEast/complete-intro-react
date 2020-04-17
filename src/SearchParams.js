@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
-import { ANIMALS } from '@frontendmasters/pet';
-
+import React, { useState, useEffect } from 'react';
+import pet, { ANIMALS } from '@frontendmasters/pet';
 
 import useDropdown from './useDropdown';
 
 export default () => {
   const [location, setLocation] = useState('Seattle, WA');
   const [breeds, setBreeds] = useState([]);
-  const [type, TypeDropDown] = useDropdown("Animal", "", ANIMALS);
-  const [breed, BreedDropDown] = useDropdown("Breed", "", breeds);
+  const [type, TypeDropDown] = useDropdown('Animal', '', ANIMALS);
+  const [breed, BreedDropDown, setBreed] = useDropdown('Breed', '', breeds);
+
+  useEffect(() => {
+    // init breed when you change type
+    setBreed("")
+    pet
+      .breeds('dog')
+      .then(
+        ({ breeds }) => setBreeds(breeds.map(({ name }) => name)),
+        console.error
+      );
+  },[type]);
 
   return (
     <div className="search-params">
