@@ -1,28 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import pet, { ANIMALS } from '@frontendmasters/pet';
-
+import 'babel-polyfill';
 import useDropdown from './useDropdown';
+
+import Results from './Result';
 
 export default () => {
   const [location, setLocation] = useState('Seattle, WA');
   const [breeds, setBreeds] = useState([]);
   const [type, TypeDropDown] = useDropdown('Animal', '', ANIMALS);
   const [breed, BreedDropDown, setBreed] = useDropdown('Breed', '', breeds);
+  const [pets, setPets] = useState([]);
+
+  const getPets = async () => {
+    const { animals } = await pet.animals({ location, breed, type });
+    setPets(animals || []);
+  };
 
   useEffect(() => {
     // init breed when you change type
-    setBreed("")
+    setBreed('');
     pet
       .breeds('dog')
       .then(
         ({ breeds }) => setBreeds(breeds.map(({ name }) => name)),
         console.error
       );
-  },[type]);
+  }, [type]);
 
   return (
     <div className="search-params">
-      <form action="">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          getPets();
+        }}
+      >
         <label htmlFor="location">
           Location
           <input
@@ -34,12 +47,9 @@ export default () => {
         </label>
         <TypeDropDown></TypeDropDown>
         <BreedDropDown></BreedDropDown>
-        <div>{location}</div>
-        <div>{type}</div>
-        <div>{breed}</div>
-        <br />
         <button>Submit</button>
       </form>
+      <Results pets={pets} />
     </div>
   );
 };
