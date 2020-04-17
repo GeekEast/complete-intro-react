@@ -175,3 +175,43 @@ yarn add --dev babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-p
 }
 
 ```
+
+### Hooks
+#### Two rules of using Hooks
+- **initialize** hooks only on the top, don't use them in loops, conditions or nested functions
+```javascript
+const App = () => {
+  const [number, setNumber] = useState(0)
+  ...
+}
+```
+- **use** hooks in React Functions: React Component or Other Hooks
+> [Hooks Rules](https://zh-hans.reactjs.org/docs/hooks-rules.html)
+
+#### Eslint for Hooks
+- Install `yarn add -D eslint-plugin-react-hooks`
+- Config:
+```json
+{
+  "rules": {
+    …,
+    "react-hooks/rules-of-hooks": "error"
+  },
+  "plugins": [
+    …,
+    "react-hooks"
+    ],
+}
+```
+
+#### Code Reuse with Hooks
+- Further **Decoupled** Code between `parent` and `children` components
+```javascript
+const useDropdown = (label, defaultState, options) => {
+  const [state, setState] = useState(defaultState); // state manager
+  const Dropdown = () => (
+    //...
+  ); // component
+  return [state, Dropdown, setState] // expose component with state manager
+};
+```
