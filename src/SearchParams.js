@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { ANIMALS } from '@frontendmasters/pet';
-import Dropdown from './Dropdown';
+
+
+import useDropdown from './useDropdown';
 
 export default () => {
   const [location, setLocation] = useState('Seattle, WA');
-  const [type, setType] = useState('');
-  const [breed, setBreed] = useState('');
   const [breeds, setBreeds] = useState([]);
+  const [type, TypeDropDown] = useDropdown("Animal", "", ANIMALS);
+  const [breed, BreedDropDown] = useDropdown("Breed", "", breeds);
 
   return (
     <div className="search-params">
@@ -20,23 +22,8 @@ export default () => {
             onChange={(event) => setLocation(event.target.value)}
           />
         </label>
-
-        <Dropdown
-          state={type}
-          setState={setType}
-          id="type"
-          label="Animal"
-          options={ANIMALS}
-        ></Dropdown>
-
-        <Dropdown
-          state={breed}
-          setState={setBreed}
-          id="breed"
-          label="Breed"
-          options={breeds}
-        ></Dropdown>
-
+        <TypeDropDown></TypeDropDown>
+        <BreedDropDown></BreedDropDown>
         <div>{location}</div>
         <div>{type}</div>
         <div>{breed}</div>
