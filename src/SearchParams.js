@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ANIMALS } from '@frontendmasters/pet';
+import Dropdown from './Dropdown';
 
 export default () => {
   const [location, setLocation] = useState('Seattle, WA');
@@ -20,40 +21,22 @@ export default () => {
           />
         </label>
 
-        <label htmlFor="type">
-          Animal
-          <select
-            id="type"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            onBlur={(e) => setType(e.target.value)}
-          >
-            <option value="all">All</option>
-            {ANIMALS.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </label>
+        <Dropdown
+          state={type}
+          setState={setType}
+          id="type"
+          label="Animal"
+          options={ANIMALS}
+        ></Dropdown>
 
-        <label htmlFor="breed">
-          Breed
-          <select
-            id="breed"
-            value={breed}
-            onChange={(e) => setBreed(e.target.value)}
-            onBlur={(e) => setBreed(e.target.value)}
-            disabled={!breeds.length}
-          >
-            <option value="all">All</option>
-            {breeds.map((b) => (
-              <option key={b} value={b}>
-                {b}
-              </option>
-            ))}
-          </select>
-        </label>
+        <Dropdown
+          state={breed}
+          setState={setBreed}
+          id="breed"
+          label="Breed"
+          options={breeds}
+        ></Dropdown>
+
         <div>{location}</div>
         <div>{type}</div>
         <div>{breed}</div>

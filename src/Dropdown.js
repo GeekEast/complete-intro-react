@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dropdown = (state, setState, id, label, options) => {
+const Dropdown = ({state, setState, id, label, options}) => {
     return (
         <label htmlFor={id}>
         {label}
