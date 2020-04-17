@@ -218,3 +218,26 @@ const useDropdown = (label, defaultState, options) => {
 
 ### Effects
 - Typically used to fetech data from API
+
+### Dev Tools
+#### Development vs Production Mode
+- Production mode has much `smaller` size of the bundled javascript
+- if you use `Parcel.js`, you can do this to change mode
+```sh
+NODE_ENV=development
+```
+
+#### Strict Mode
+- give your additional warnings about things that you shouldn't do.
+```javascript
+const App = () => {
+  return <React.StrictMode>
+  // ...
+  </React.StrictMode>
+}
+
+```
+#### Dev Tools
+- react dev tools in chrome
+- redux dev tools in chrome
+- reselect dev tools in chrome
