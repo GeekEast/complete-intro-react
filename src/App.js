@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 // import Pet from './Pet';
 import SearchParams from './SearchParams';
 import Details from './Details';
-import { Router, Link } from '@reach/router'
+import { Router, Link } from '@reach/router';
+import ThemeContext from './ThemeContext';
 
 const App = () => {
+  const theme = useState('darkblue');
   return (
-    <div>
-
+    <ThemeContext.Provider value={theme}>
       <header>
-        <Link to="/">
-          Adopt Me!
-        </Link>
+        <Link to="/">Adopt Me!</Link>
       </header>
 
       {/* <Pet name="Luna" type="Dog" breed="Havanese"/>
@@ -22,8 +21,8 @@ const App = () => {
         <SearchParams path="/"></SearchParams>
         <Details path="details/:id"></Details>
       </Router>
-    </div>
-  )
-}
+    </ThemeContext.Provider>
+  );
+};
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

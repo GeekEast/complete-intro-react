@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import pet, { ANIMALS } from '@frontendmasters/pet';
 import 'babel-polyfill';
 import useDropdown from './useDropdown';
-
+import ThemeContext from './ThemeContext';
 import Results from './Result';
 
 export default () => {
+  const [theme, setTheme] = useContext(ThemeContext);
   const [location, setLocation] = useState('Seattle, WA');
   const [breeds, setBreeds] = useState([]);
   const [type, TypeDropDown] = useDropdown('Animal', '', ANIMALS);
@@ -47,7 +48,20 @@ export default () => {
         </label>
         <TypeDropDown></TypeDropDown>
         <BreedDropDown></BreedDropDown>
-        <button>Submit</button>
+        <label htmlFor="location">
+          Theme
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            onBlur={(e) => setTheme(e.target.value)}
+          >
+            <option value="peru">Peru</option>
+            <option value="darkblue">Dark Blue</option>
+            <option value="chartreuse">Chartreuse</option>
+            <option value="mediumorchid">Medium Orchid</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>
