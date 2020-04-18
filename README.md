@@ -245,3 +245,49 @@ const App = () => {
 
 ### Reach Router
 - Good for handling accessibility
+
+### Class Components
+#### setState
+- shallow merge
+```javascript
+this.state = {a: 1, b:2}
+this.setState({
+  a:2, // override 1
+  b:3, // override 2
+  c:4  // add new
+})
+```
+
+#### `getDerivedStateFromProps()`
+- Happens before `render()`
+- usually used to compare `previous state` and `current props from parents` to determine **data** for `rendering`
+- **not recommended** to use by React
+##### Alternatives
+- Fully **Controlled** Component
+```javascript
+function EmailInput(props) {
+  return <input onChange={props.onChange} value={props.email} />;
+}
+```
+- **Best way**: Fully **uncontrolled** component with a `key` 
+  
+> When a key changes, React will create a `new component instance` rather than **update** the existing one.
+
+```javascript
+class EmailInput extends Component {
+  state = { email: this.props.defaultEmail };
+
+  handleChange = event => {
+    this.setState({ email: event.target.value });
+  };
+
+  render() {
+    return <input onChange={this.handleChange} value={this.state.email} />;
+  }
+}
+
+<EmailInput
+  defaultEmail={this.props.user.email}
+  key={this.props.user.id}
+/>
+```
