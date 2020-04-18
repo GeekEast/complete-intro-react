@@ -20,7 +20,7 @@ const App = () => {
       <Pet name="Doinl" type="Cat" breed="Mix"/> */}
       <Router>
         <SearchParams path="/"></SearchParams>
-        <Details path="details"></Details>
+        <Details path="details/:id"></Details>
       </Router>
     </div>
   )
