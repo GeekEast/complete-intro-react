@@ -247,6 +247,8 @@ const App = () => {
 - Good for handling accessibility
 
 ### Class Components
+- `this.func.bind` **used** to be an **expensive** operation in **browser**
+- Although chrome fix the **performance** issue of `bind`, but you still need to try to avoid using `bind` since application may run in old browser
 #### setState
 - shallow merge
 ```javascript
