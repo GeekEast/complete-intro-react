@@ -293,3 +293,66 @@ class EmailInput extends Component {
   key={this.props.user.id}
 />
 ```
+
+### Error Boundaries
+- EB is just like `Exception Handling` to catch some errors to **avoid** crashing your applications.
+> An `Error Boundary Component` must be a **Class Component**
+
+- EB can only catch erros of its children components
+- EB cannot be used in event handlers
+- You can use `try/catch` in event handlers
+#### Usage
+- Simply use `either` methods within a **class component**, then the component becomes an `Error Boundary`
+  - `static getDerivedStateFromError()`: control to display fallback UI
+  - `componentDidCatch()`: side effect like error logging service
+#### static getDerivedStateFromError()
+> happens during render(), thus not allowed for handling any side effects
+
+#### componentDidCatch()
+- used for hadning **side effects** like `error logging service`
+  - [Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/?WT.mc_id=reactintro-github-brholt)
+  - [Sentry](https://sentry.io/)
+  - [TrackJS](https://trackjs.com/)
+
+```javascript
+// ErrorBoundary.js
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    // step 1: intilaize error state
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    // step 2: change error state when error happens
+    return { hasError: true };
+  }
+
+  // step 3: side effect like error logging service
+  componentDidCatch(error, info) {
+    console.error("ErrorBoundary caught an error", error, info);
+  }
+
+  // step 4: fallback UI
+  render() {
+    if (this.state.hasError) {
+      return (
+        <h1>
+          There was an error with this listing. <Link to="/">Click here</Link>{" "}
+          to back to the home page or wait five seconds.
+        </h1>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
+#### Test
+```javacript
+  componentDidMount() {
+    throw new Error("lol"); 
+    ...
+  }
+```
