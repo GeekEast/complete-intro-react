@@ -117,6 +117,7 @@ yarn add --dev parcel-bundler
 yarn global add serve
 serve -s dist
 ```
+> Parcel will automatically install package that has been imported in your code.
 
 ### JSX
 - Make code more **readable**
@@ -241,3 +242,6 @@ const App = () => {
 - react dev tools in chrome
 - redux dev tools in chrome
 - reselect dev tools in chrome
+
+### Reach Router
+- Good for handling accessibility

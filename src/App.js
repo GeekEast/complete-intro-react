@@ -2,15 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import Pet from './Pet';
 import SearchParams from './SearchParams';
+import Details from './Details';
+import { Router, Link } from '@reach/router'
 
 const App = () => {
   return (
     <div>
-      <h1>Adopt Me!</h1>
+
+      <header>
+        <Link to="/">
+          Adopt Me!
+        </Link>
+      </header>
+
       {/* <Pet name="Luna" type="Dog" breed="Havanese"/>
       <Pet name="Pepper" type="Bird" breed="Cockatiel"/>
       <Pet name="Doinl" type="Cat" breed="Mix"/> */}
-      <SearchParams></SearchParams>
+      <Router>
+        <SearchParams path="/"></SearchParams>
+        <Details path="details"></Details>
+      </Router>
     </div>
   )
 }
