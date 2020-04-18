@@ -24,6 +24,7 @@ class Details extends React.Component {
       });
     });
   }
+
   render() {
     if (this.state.loading) {
       return <h1>Loading</h1>;
