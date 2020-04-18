@@ -361,3 +361,21 @@ export default ErrorBoundary;
 - Application-Level State, **avoid using context until you have to use it**.
 - Use `Redux` or `Context`, don't use them both.
 - Context is useful to pass `broadcasting` **user-data**
+
+
+### Context
+- Application-Level State, **avoid using context until you have to use it**.
+- Use `Redux` or `Context`, don't use them both.
+- Context is useful to pass `broadcasting` **user-data**
+
+### Portal
+- usually used to do modal
+#### Create A new Mount Point
+- This where the modal will actually be mounted whenever we render to this portal. **Totally separate from our app root**.
+```html
+<body>
+  <div id="root">Not Rendered!</div>
+  <!-- Second Mount Point -->
+  <div id="modal"></div> 
+</body>
+```
