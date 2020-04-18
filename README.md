@@ -356,3 +356,8 @@ export default ErrorBoundary;
     ...
   }
 ```
+
+### Context
+- Application-Level State, **avoid using context until you have to use it**.
+- Use `Redux` or `Context`, don't use them both.
+- Context is useful to pass `broadcasting` **user-data**
