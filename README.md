@@ -425,3 +425,7 @@ export default Modal;
     </Modal>
   ) : null}
 ```
+
+### Hooks in Depth
+- [GitHub Repo](https://github.com/GeekEast/react-hooks-examples)
+- [Code Sandbox](https://codesandbox.io/s/github/GeekEast/react-hooks-examples)
