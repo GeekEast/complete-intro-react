@@ -1,3 +1,44 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table Of Content
+
+- [Complete Intro to React](#complete-intro-to-react)
+  - [What is React?](#what-is-react)
+    - [API](#api)
+  - [JSX](#jsx)
+    - [Example](#example)
+  - [Hooks](#hooks)
+    - [Two rules of using Hooks](#two-rules-of-using-hooks)
+    - [Code Reuse with Hooks](#code-reuse-with-hooks)
+  - [Dev Tools](#dev-tools)
+    - [Development vs Production Mode](#development-vs-production-mode)
+    - [Strict Mode](#strict-mode)
+  - [Reach Router](#reach-router)
+  - [Class Components](#class-components)
+    - [setState](#setstate)
+    - [`getDerivedStateFromProps()`](#getderivedstatefromprops)
+    - [Alternatives to `getDerivedStateFromProps()`](#alternatives-to-getderivedstatefromprops)
+  - [Error Boundaries](#error-boundaries)
+    - [Usage](#usage)
+    - [static getDerivedStateFromError()](#static-getderivedstatefromerror)
+    - [componentDidCatch()](#componentdidcatch)
+    - [Test Error](#test-error)
+  - [Context](#context)
+  - [Portal](#portal)
+    - [Create A new Mount Point](#create-a-new-mount-point)
+    - [Create a Modal Container](#create-a-modal-container)
+    - [Apply Modal](#apply-modal)
+  - [Styled Component: Emotion](#styled-component-emotion)
+  - [Code Spliting with `lazy` and `Suspense`](#code-spliting-with-lazy-and-suspense)
+    - [On Router](#on-router)
+    - [On anywhere else](#on-anywhere-else)
+  - [Code spliting with `loadable`](#code-spliting-with-loadable)
+  - [Server Side Rendering](#server-side-rendering)
+    - [Process](#process)
+  - [Testing](#testing)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Complete Intro to React
 
 ### What is React?
@@ -28,96 +69,6 @@ ReactDOM.render(
 );
 ```
 
-### Code Style
-
-#### Prettier
-
-- Install
-```sh
-yarn add --dev --exact prettier
-```
-- Config
-```json
-# package.json
-  "scripts": {
-+   "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-  },
-```
-
-
-```json
-// .prettierrc
-{
-  "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true
-}
-```
-```sh
-# .prettierignore
-dist/
-**/*.md
-.cache/
-coverage/
-```
-
-#### Eslint
-
-- Install
-```sh
-yarn add --dev eslint eslint-config-prettier
-```
-- Config
-```json
-# package.json
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
-+   "lint": "eslint \"src/**/*.{js,jsx,html,css}\" --fix --quiet"
-  },
-```
-```json
-// eslintrc.json
-{
-  "extends": ["eslint:recommended", "prettier", "prettier/react"],
-  "plugins": [],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  }
-}
-```
-
-### Bundler
-- Install
-```sh
-yarn add --dev parcel-bundler 
-```
-- Config
-```json
-  "scripts": {
-+   "dev": "parcel src/index.html",
-+   "build": "parcel build src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx,html,css}\" --fix --quiet"
-  },
-```
-- Run Production locally
-```
-yarn global add serve
-serve -s dist
-```
-> Parcel will automatically install package that has been imported in your code.
 
 ### JSX
 - Make code more **readable**
@@ -132,50 +83,6 @@ React.createElement("h1", {id:"main-title"}, props.name)
 ```html
 <h1 id="main-title">{props.name}</h1>
 ```
-#### Add JSX support for Eslint
-- Install
-```sh
-yarn add --dev babel-eslint eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
-```
-- Config
-```json
-{
-  "extends": [
-    "eslint:recommended",
-+   "plugin:import/errors",
-+   "plugin: react/recommended",
-+   "plugin: jsx-a11y/recommended",
-    "prettier", 
-    "prettier/react"],
-  "rules": {
-+   "react/prop-types": 0,
-+   "react/display-name": 0
-  }
-  "plugins": [
-+   "react",
-+   "import",
-+   "jsx-a11y"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
-  },
-+  "settings": {
-+    "react": {
-+      "version": "detect"
-+    }
-+  }
-}
-
-```
 
 ### Hooks
 #### Two rules of using Hooks
@@ -189,21 +96,6 @@ const App = () => {
 - **use** hooks in React Functions: React Component or Other Hooks
 > [Hooks Rules](https://zh-hans.reactjs.org/docs/hooks-rules.html)
 
-#### Eslint for Hooks
-- Install `yarn add -D eslint-plugin-react-hooks`
-- Config:
-```json
-{
-  "rules": {
-    …,
-    "react-hooks/rules-of-hooks": "error"
-  },
-  "plugins": [
-    …,
-    "react-hooks"
-    ],
-}
-```
 
 #### Code Reuse with Hooks
 - Further **Decoupled** Code between `parent` and `children` components
@@ -217,8 +109,6 @@ const useDropdown = (label, defaultState, options) => {
 };
 ```
 
-### Effects
-- Typically used to fetech data from API
 
 ### Dev Tools
 #### Development vs Production Mode
@@ -238,10 +128,6 @@ const App = () => {
 }
 
 ```
-#### Dev Tools
-- react dev tools in chrome
-- redux dev tools in chrome
-- reselect dev tools in chrome
 
 ### Reach Router
 - Good for handling accessibility
@@ -264,7 +150,7 @@ this.setState({
 - Happens before `render()`
 - usually used to compare `previous state` and `current props from parents` to determine **data** for `rendering`
 - **not recommended** to use by React
-##### Alternatives
+#### Alternatives to `getDerivedStateFromProps()`
 - Fully **Controlled** Component
 ```javascript
 function EmailInput(props) {
@@ -349,19 +235,13 @@ class ErrorBoundary extends Component {
 
 export default ErrorBoundary;
 ```
-#### Test
+#### Test Error
 ```javacript
   componentDidMount() {
     throw new Error("lol"); 
     ...
   }
 ```
-
-### Context
-- Application-Level State, **avoid using context until you have to use it**.
-- Use `Redux` or `Context`, don't use them both.
-- Context is useful to pass `broadcasting` **user-data**
-
 
 ### Context
 - Application-Level State, **avoid using context until you have to use it**.
@@ -426,11 +306,7 @@ export default Modal;
   ) : null}
 ```
 
-### Hooks in Depth
-- [GitHub Repo](https://github.com/GeekEast/react-hooks-examples)
-- [Code Sandbox](https://codesandbox.io/s/github/GeekEast/react-hooks-examples)
-
-### Emotion
+### Styled Component: Emotion
 - One **small** and **fast** solution for `styled-component`
   
 ```javascript
@@ -446,7 +322,7 @@ import { css } from '@emotion/core';
 </header>
 ```
 
-### Code Spliting with lazy and Suspense
+### Code Spliting with `lazy` and `Suspense`
 - You only need to use `Suspense` **once** on top of the App
 #### On Router
 ```javascript
@@ -465,7 +341,7 @@ const SearchParams = lazy(() => import('./SearchParams'));
 // Details
 const Modal = lazy(() => import("./Modal"))
 ```
-### Code spliting with loadable
+### Code spliting with `loadable`
 - Don't need `suspense` anymore
 - You can easiy specify corresponding `fallback` for each Loadable component
 - More `readable`
@@ -498,3 +374,12 @@ const Modal = Loadable({
 *   React `pre-render` the page in the backend
 *   Backend server sends only `markup` for user **first time** access
 *   Frontend: React is still rendering, once it finshed, it will **replace the first time page**.
+
+### Testing
+
+*   `Jest` can be used both for React and Node.js
+*   `@testing-library/react` is a new recommended and easy way to test React (replacing Enzyme)
+*   `__tests__` naming are borrowed from python means something magic. (jest will **automatically** find `__tests__` and run it.)
+    *   You can name `SearchParams.js` rather thatn `SearchParams.test.js`, magic folder names help jest find it.
+    *   Without magic folder name, you need assign `SearchParams.test.js` to let testing libs find testing scripts.
+*   If one test including `3rd party API` and `don't want to wait for API response`, we can use **mock** to replace it.
