@@ -498,3 +498,11 @@ const Modal = Loadable({
 *   React `pre-render` the page in the backend
 *   Backend server sends only `markup` for user **first time** access
 *   Frontend: React is still rendering, once it finshed, it will **replace the first time page**.
+
+### Testing
+- `Jest` can be used both for React and Node.js
+- `@testing-library/react` is a new recommended and easy way to test React (replacing Enzyme)
+- `__tests__` naming are borrowed from python means something magic. (jest will **automatically** find `__tests__` and run it.)
+  - You can name `SearchParams.js` rather thatn `SearchParams.test.js`, magic folder names help jest find it.
+  - Without magic folder name, you need assign `SearchParams.test.js` to let testing libs find testing scripts.
+- If one test including `3rd party API` and `don't want to wait for API response`, we can use **mock** to replace it.

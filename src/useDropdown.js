@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 const useDropdown = (label, defaultState, options) => {
   const [state, setState] = useState(defaultState);
@@ -7,6 +7,7 @@ const useDropdown = (label, defaultState, options) => {
     <label htmlFor={id}>
       {label}
       <select
+        data-testid={id} // for testing, avoid using id to decouple testing logic from normal logic
         id={id}
         value={state}
         onChange={(e) => setState(e.target.value)}
@@ -14,15 +15,15 @@ const useDropdown = (label, defaultState, options) => {
         disabled={!options.length}
       >
         <option value="all">All</option>
-        {
-            options.map(o => (
-            <option key={o} value={o}>{o}</option>
-            ))
-        }
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
       </select>
     </label>
   );
-  return [state, Dropdown, setState] // if you need a component with data controller within it.
+  return [state, Dropdown, setState]; // if you need a component with data controller within it.
 };
 
 export default useDropdown;
