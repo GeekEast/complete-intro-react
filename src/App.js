@@ -3,9 +3,17 @@ import ReactDOM from 'react-dom';
 import { Router } from '@reach/router';
 import ThemeContext from './ThemeContext';
 import NavBar from './NavBar';
+import Loadable from 'react-loadable';
 
-const Details = lazy(() => import('./Details'));
-const SearchParams = lazy(() => import('./SearchParams'));
+const Details = Loadable({
+  loader: () => import('./Details'),
+  loading: () => <div>Loading</div> 
+})
+
+const SearchParams = Loadable({
+  loader: () => import('./SearchParams'),
+  loading: () => <div>Loading</div>
+})
 
 const App = () => {
   const theme = useState('darkblue');

@@ -4,8 +4,12 @@ import Carousel from './Carousel';
 import ErrorBoundary from './ErrorBoundary';
 import ThemeContext from './ThemeContext';
 import { navigate } from '@reach/router';
+import Loadable from 'react-loadable';
 
-const Modal = lazy(() => import("./Modal"))
+const Modal = Loadable({
+  loader: () => import("./Modal"),
+  loading: () => <div>Loading</div>
+})
 
 class Details extends React.Component {
   constructor(props) {

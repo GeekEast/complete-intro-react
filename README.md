@@ -446,7 +446,7 @@ import { css } from '@emotion/core';
 </header>
 ```
 
-### Code Spliting
+### Code Spliting with lazy and Suspense
 - You only need to use `Suspense` **once** on top of the App
 #### On Router
 ```javascript
@@ -462,5 +462,27 @@ const SearchParams = lazy(() => import('./SearchParams'));
 ```
 #### On anywhere else
 ```javascript
+// Details
+const Modal = lazy(() => import("./Modal"))
+```
+### Code spliting with loadable
+- Don't need `suspense` anymore
+- You can easiy specify corresponding `fallback` for each Loadable component
+- More `readable`
+```javascript
+const Details = Loadable({
+  loader: () => import('./Details'),
+  loading: () => <div>Loading</div> 
+})
+
+const SearchParams = Loadable({
+  loader: () => import('./SearchParams'),
+  loading: () => <div>Loading</div>
+})
+
+const Modal = Loadable({
+  loader: () => import("./Modal"),
+  loading: () => <div>Loading</div>
+})
 
 ```
