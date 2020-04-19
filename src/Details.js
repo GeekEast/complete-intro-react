@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import pet from '@frontendmasters/pet';
 import Carousel from './Carousel';
 import ErrorBoundary from './ErrorBoundary';
 import ThemeContext from './ThemeContext';
 import { navigate } from '@reach/router';
-import Modal from './Modal';
+import Loadable from 'react-loadable';
+
+const Modal = Loadable({
+  loader: () => import("./Modal"),
+  loading: () => <div>Loading</div>
+})
 
 class Details extends React.Component {
   constructor(props) {

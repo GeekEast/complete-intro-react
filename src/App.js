@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
-// import Pet from './Pet';
-import SearchParams from './SearchParams';
-import Details from './Details';
 import { Router } from '@reach/router';
 import ThemeContext from './ThemeContext';
 import NavBar from './NavBar';
+import Loadable from 'react-loadable';
+
+const Details = Loadable({
+  loader: () => import('./Details'),
+  loading: () => <div>Loading</div> 
+})
+
+const SearchParams = Loadable({
+  loader: () => import('./SearchParams'),
+  loading: () => <div>Loading</div>
+})
+
 const App = () => {
   const theme = useState('darkblue');
   return (
     <ThemeContext.Provider value={theme}>
       <NavBar></NavBar>
-
-      {/* <Pet name="Luna" type="Dog" breed="Havanese"/>
-      <Pet name="Pepper" type="Bird" breed="Cockatiel"/>
-      <Pet name="Doinl" type="Cat" breed="Mix"/> */}
-      <Router>
-        <SearchParams path="/"></SearchParams>
-        <Details path="details/:id"></Details>
-      </Router>
+      <Suspense fallback={<h1>loading routes ...</h1>}>
+        <Router>
+          <SearchParams path="/"></SearchParams>
+          <Details path="details/:id"></Details>
+        </Router>
+      </Suspense>
     </ThemeContext.Provider>
   );
 };
