@@ -30,4 +30,6 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// remove react-dom import
+// replace render at bottom
+export default App;

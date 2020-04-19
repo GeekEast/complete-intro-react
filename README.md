@@ -486,3 +486,27 @@ const Modal = Loadable({
 })
 
 ```
+
+### Server Side Rendering
+- **Without** `SSR`, user has to download html(nothing, just mount point),js, wait for js to run and then see the page. **Slow!**
+- **With** `SSR`, use just download the html and page shows immediately. **Fast!**
+- `SSR` is typically used to `render` the page **for the first time**.
+- `SSR` is also beneficial to `Search Engine Optimization`(SEO)
+
+#### Process
+- React `pre-render` the page in the backend
+- Backend server sends only `markup` for user **first time** access
+- Frontend: React is still rendering, once it finshed, it will **replace the first time page**.
+
+#### Important!
+- You have to go through your **entire application** to make sure **for the first time render**, there is no reference to `document` object.
+- Since in `Node.js`, there is no `documents` object
+- Solution: put `document` object inside `useEffect()`, rather than outside `component`
+```javascript
+// const modalRoot = document.getElementById("modal") 
+const Modal = () => {
+  useEffect(
+    const modalRoot = document.getElementById("modal") 
+  )
+}
+```
