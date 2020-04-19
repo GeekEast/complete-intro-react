@@ -445,3 +445,22 @@ import { css } from '@emotion/core';
 >
 </header>
 ```
+
+### Code Spliting
+- You only need to use `Suspense` **once** on top of the App
+#### On Router
+```javascript
+const Details = lazy(() => import('./Details'));
+const SearchParams = lazy(() => import('./SearchParams'));
+
+<Suspense fallback={<h1>loading routes ...</h1>}>
+  <Router>
+    <SearchParams path="/"></SearchParams>
+    <Details path="details/:id"></Details>
+  </Router>
+</Suspense>
+```
+#### On anywhere else
+```javascript
+
+```
