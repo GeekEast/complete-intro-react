@@ -3,16 +3,14 @@ import ReactDOM from 'react-dom';
 // import Pet from './Pet';
 import SearchParams from './SearchParams';
 import Details from './Details';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 import ThemeContext from './ThemeContext';
-
+import NavBar from './NavBar';
 const App = () => {
   const theme = useState('darkblue');
   return (
     <ThemeContext.Provider value={theme}>
-      <header>
-        <Link to="/">Adopt Me!</Link>
-      </header>
+      <NavBar></NavBar>
 
       {/* <Pet name="Luna" type="Dog" breed="Havanese"/>
       <Pet name="Pepper" type="Bird" breed="Cockatiel"/>

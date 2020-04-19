@@ -429,3 +429,19 @@ export default Modal;
 ### Hooks in Depth
 - [GitHub Repo](https://github.com/GeekEast/react-hooks-examples)
 - [Code Sandbox](https://codesandbox.io/s/github/GeekEast/react-hooks-examples)
+
+### Emotion
+- One **small** and **fast** solution for `styled-component`
+  
+```javascript
+import { css } from '@emotion/core';
+<header
+  css={css`
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  `}
+>
+</header>
+```
