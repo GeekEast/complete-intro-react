@@ -361,3 +361,67 @@ export default ErrorBoundary;
 - Application-Level State, **avoid using context until you have to use it**.
 - Use `Redux` or `Context`, don't use them both.
 - Context is useful to pass `broadcasting` **user-data**
+
+
+### Context
+- Application-Level State, **avoid using context until you have to use it**.
+- Use `Redux` or `Context`, don't use them both.
+- Context is useful to pass `broadcasting` **user-data**
+
+### Portal
+- usually used to do modal
+#### Create A new Mount Point
+- This where the modal will actually be mounted whenever we render to this portal. **Totally separate from our app root**.
+```html
+<body>
+  <div id="root">Not Rendered!</div>
+  <!-- Second Mount Point -->
+  <div id="modal"></div> 
+</body>
+```
+
+#### Create a Modal Container
+```javascript
+import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+
+const modalRoot = document.getElementById("modal");
+
+const Modal = ({ children }) => {
+  const elRef = useRef(null);
+  if (!elRef.current) {
+    elRef.current = document.createElement("div");
+  }
+
+  useEffect(() => {
+    modalRoot.appendChild(elRef.current);
+    return () => modalRoot.removeChild(elRef.current);
+  }, []);
+
+  return createPortal(<div>{children}</div>, elRef.current);
+};
+
+export default Modal;
+```
+
+#### Apply Modal
+```javascript
+  toggleModal() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+  adopt() {
+    navigate(this.state.url);
+  }
+
+  {showModal ? (
+    <Modal>
+      <div>
+        <h1>Would you like to adopt {name}?</h1>
+        <div className="buttons">
+          <button onClick={this.adopt}>Yes</button>
+          <button onClick={this.toggleModal}>No</button>
+        </div>
+      </div>
+    </Modal>
+  ) : null}
+```
