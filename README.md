@@ -486,3 +486,15 @@ const Modal = Loadable({
 })
 
 ```
+
+### Server Side Rendering
+*   **Without** `SSR`, user has to download html(nothing, just mount point),js, wait for js to run and then see the page. **Slow!**
+*   **With** `SSR`, use just download the html and page shows immediately. **Fast!**
+*   `SSR` is typically used to `render` the page **for the first time**.
+*   `SSR` is also beneficial to `Search Engine Optimization`(SEO)
+
+#### Process
+
+*   React `pre-render` the page in the backend
+*   Backend server sends only `markup` for user **first time** access
+*   Frontend: React is still rendering, once it finshed, it will **replace the first time page**.
